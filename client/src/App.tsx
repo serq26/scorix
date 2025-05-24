@@ -6,6 +6,7 @@ import { DialogProvider } from "./providers/DialogProvider";
 import MatchDetail from "./pages/MatchDetail";
 import HomeScreen from "./pages/HomeScreen";
 import Header from "./components/ui/Header";
+import UserCoupons from "./pages/UserCoupons";
 
 function App() {
   return (
@@ -13,11 +14,12 @@ function App() {
       <BetsCartProvider>
         <DialogProvider>
           <NotifyProvider>
-            <Header />
             <Router>
+              <Header />
               <Routes>
                 <Route path="/" element={<HomeScreen />} />
                 <Route path="/match/:id" element={<MatchDetail />} />
+                <Route path="/my-coupons" element={<UserCoupons />} />
               </Routes>
             </Router>
           </NotifyProvider>

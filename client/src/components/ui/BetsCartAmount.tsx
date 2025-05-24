@@ -62,7 +62,7 @@ const BetsCartAmount: React.FC<BetsCartAmountProps> = ({ bets, totalOdd }) => {
 
   const handleOnPlay = async () => {
     try {
-      const response = await playCoupon(bets, maxEarning);
+      const response = await playCoupon(bets, maxEarning, fold, totalOdd);
       if (response) {
         notify.open("Kuponunuz başarıyla oynandı.");
         clearAllBets();

@@ -11,18 +11,20 @@ import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
-import ScoreboardIcon from '@mui/icons-material/Scoreboard';
+import ScoreboardIcon from "@mui/icons-material/Scoreboard";
+import { Link } from "react-router-dom";
 
 const pages = ["İddaa", "Forum", "Popüler", "Yazarlar"];
-const settings = ["Hesabım", "Kuponlarım", "Ayarlar", "Çıkış Yap"];
+const userMenu = [
+  { id: 1, title: "Hesabım", url: "/my-account" },
+  { id: 2, title: "Kuponlarım", url: "/my-coupons" },
+  { id: 3, title: "Ayarlar", url: "/settings" },
+  { id: 4, title: "Çıkış Yap", url: "/logout" },
+];
 
 function Header() {
-  const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(
-    null
-  );
-  const [anchorElUser, setAnchorElUser] = React.useState<null | HTMLElement>(
-    null
-  );
+  const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(null);
+  const [anchorElUser, setAnchorElUser] = React.useState<null | HTMLElement>(null);
 
   const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorElNav(event.currentTarget);
@@ -40,7 +42,7 @@ function Header() {
   };
 
   return (
-    <AppBar position="fixed" sx={{ backgroundColor: 'var(--primary-color)'}}>
+    <AppBar position="fixed" sx={{ backgroundColor: "var(--primary-color)" }}>
       <Container maxWidth="xl">
         <Toolbar disableGutters>
           <ScoreboardIcon sx={{ display: { xs: "none", md: "flex" }, mr: 1 }} />
@@ -48,7 +50,7 @@ function Header() {
             variant="h6"
             noWrap
             component="a"
-            href="#"
+            href="/"
             sx={{
               mr: 2,
               display: { xs: "none", md: "flex" },
@@ -97,12 +99,12 @@ function Header() {
             </Menu>
           </Box>
           <ScoreboardIcon sx={{ display: { xs: "flex", md: "none" }, mr: 1 }} />
-          
+
           <Typography
             variant="h5"
             noWrap
             component="a"
-            href="#"
+            href="/"
             sx={{
               mr: 2,
               display: { xs: "flex", md: "none" },
@@ -118,11 +120,7 @@ function Header() {
           </Typography>
           <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
             {pages.map((page) => (
-              <Button
-                key={page}
-                onClick={handleCloseNavMenu}
-                sx={{ my: 2, color: "white", display: "block" }}
-              >
+              <Button key={page} onClick={handleCloseNavMenu} sx={{ my: 2, color: "white", display: "block" }}>
                 {page}
               </Button>
             ))}
@@ -130,7 +128,7 @@ function Header() {
           <Box sx={{ flexGrow: 0 }}>
             <Tooltip title="Open settings">
               <IconButton onClick={handleOpenUserMenu} sx={{ outline: "inherit" }}>
-                <Avatar variant="circular"  sx={{ bgcolor: "orange" }} />
+                <Avatar variant="circular" sx={{ bgcolor: "orange" }} />
               </IconButton>
             </Tooltip>
             <Menu
@@ -149,11 +147,11 @@ function Header() {
               open={Boolean(anchorElUser)}
               onClose={handleCloseUserMenu}
             >
-              {settings.map((setting) => (
-                <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                  <Typography sx={{ textAlign: "center" }}>
-                    {setting}
-                  </Typography>
+              {userMenu.map((menuItem) => (
+                <MenuItem key={menuItem.id} onClick={handleCloseUserMenu}>
+                  <Link to={menuItem?.url} style={{ color: 'gray', textDecoration: 'none' }}>
+                    <Typography sx={{ textAlign: "center" }}>{menuItem.title}</Typography>
+                  </Link>
                 </MenuItem>
               ))}
             </Menu>

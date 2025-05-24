@@ -1,4 +1,5 @@
 import { BetsCartListType } from "../types/betsCartType";
+import { CouponType } from "../types/couponType";
 
 function openDB(dbName: string, storeName: string, keyPath: string | null = null) {
   return new Promise<IDBDatabase>((resolve, reject) => {
@@ -75,17 +76,32 @@ export async function saveCouponToDB(coupon: BetsCartListType[]) {
   } else {
     return false;
   }
-  // return tx.oncomplete;
 }
 
-export async function playCoupon(coupon: BetsCartListType[], maxEarning: number) {
+export async function playCoupon(coupon: BetsCartListType[], maxEarning: number, foldAmount: number, totalOdd:  number) {
   const db = await openDB("PlayedCoupons", "coupons", "id");
   const tx = db.transaction("coupons", "readwrite");
   const store = tx.objectStore("coupons");
-  const response = store.put({ id: Date.now(), coupon, maxEarning });
+  const response = store.put({ id: Date.now(), coupon, maxEarning, date: Date.now(), foldAmount, totalOdd });
   if(response) {
     return true;
   } else {
     return false;
   }
+}
+
+export async function getPlayedCouponsFromDB(): Promise<CouponType[]> {
+  const db = await openDB("PlayedCoupons", "coupons", "id");
+  const tx = db.transaction("coupons", "readonly");
+  const store = tx.objectStore("coupons");
+  const request = store.getAll();
+
+  return new Promise((resolve, reject) => {
+    request.onsuccess = () => {
+      resolve(request.result);
+    };
+    request.onerror = () => {
+      reject(request.error);
+    };
+  });
 }

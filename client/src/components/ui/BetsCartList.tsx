@@ -5,6 +5,7 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import { useBetsCart } from "../../hooks/useBetsCart";
 import { MatchType } from "../../types/matchType";
 import { OddEnum } from "../../constants/oddEnum";
+import { useLocation } from "react-router-dom";
 
 type BetsCartListProps = {
   bets: BetsCartListType[];
@@ -12,7 +13,9 @@ type BetsCartListProps = {
 
 const BetsCartList: React.FC<BetsCartListProps> = ({ bets }) => {
   const { deleteBet, setIsOpenedBetsCart } = useBetsCart();
-  
+  const location = useLocation();
+  const isTheLocationPage: boolean = location.pathname === "/my-coupons" ? true : false;
+
   function getCategoryIcon(category: string | undefined) {
     const img = categoriesData.find((item) => item.id === category);
     return <img src={img?.icon} alt={img?.title} style={{ maxWidth: "8%", objectFit: "cover" }} />;
@@ -23,19 +26,32 @@ const BetsCartList: React.FC<BetsCartListProps> = ({ bets }) => {
     deleteBet(match.id);
   }
 
-  if(bets.length === 0) {
+  if (bets.length === 0) {
     return (
-      <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', flexDirection: 'column', height: '50%', gap: 4}}>
-        <Typography textAlign={"center"} mt={2}>Kuponunuzda hiç maç bulunmuyor.</Typography>
-        <Button variant="outlined" onClick={() => setIsOpenedBetsCart(false)}>Maç Ekle</Button>
+      <Box
+        sx={{
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          flexDirection: "column",
+          height: "50%",
+          gap: 4,
+        }}
+      >
+        <Typography textAlign={"center"} mt={2}>
+          Kuponunuzda hiç maç bulunmuyor.
+        </Typography>
+        <Button variant="outlined" onClick={() => setIsOpenedBetsCart(false)}>
+          Maç Ekle
+        </Button>
       </Box>
-    )
+    );
   }
 
   return (
-    <Box sx={{ height: "50%", overflow: "scroll"}}>
+    <Box sx={{ height: "50%", overflow: !isTheLocationPage ? "scroll" : null }}>
       {bets?.map((bet) => (
-        <Paper key={bet.match.id} elevation={0} sx={{borderBottom: '1px solid #ccc', pb: 2}}>
+        <Paper key={bet.match.id} elevation={0} sx={{ borderBottom: "1px solid #ccc", pb: 2 }}>
           <Box display={"flex"} alignItems={"center"} justifyContent={"space-between"} py={2} px={1}>
             <Box display={"flex"} gap={2}>
               {getCategoryIcon(bet.match.category)}
@@ -43,9 +59,11 @@ const BetsCartList: React.FC<BetsCartListProps> = ({ bets }) => {
                 {bet.match.homeTeam} - {bet.match.awayTeam}
               </Box>
             </Box>
-            <IconButton aria-label="delete" onClick={() => handleDeleteBet(bet.match)}>
-              <DeleteIcon />
-            </IconButton>
+            {!isTheLocationPage && (
+              <IconButton aria-label="delete" onClick={() => handleDeleteBet(bet.match)}>
+                <DeleteIcon />
+              </IconButton>
+            )}
           </Box>
           <Box display={"flex"} justifyContent={"space-between"} alignItems={"center"} ml={2}>
             <Box display={"flex"} justifyContent={"flex-start"}>
