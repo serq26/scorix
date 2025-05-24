@@ -1,20 +1,16 @@
-# 🏆 Betting Web App Clone
+# 🏆 Scorix
 
-Bu proje, **Bilyoner**, **Nesine** ve **İddaa** gibi popüler spor bahis sitelerinin işleyişini modelleyen React.js ve Node.js tabanlı tam stack bir web uygulamasıdır. Kullanıcılar canlı maç oranlarını görebilir ve bahis kuponları oluşturabilir.
+This project is a full stack web application based on React.js and Node.js that models the operation of popular sports betting sites such as **Bilyoner**, **Nesine** and **Iddaa**. Users can view live match odds and create betting slips.
 
-## 📁 Proje Yapısı
+## 📁 Project Folder
 
 /
-├── client/ # React.js frontend uygulaması
-├── server/ # Node.js (Express) backend uygulaması
+├── client/ # React.js frontend 
+├── server/ # Node.js (Express) backend
 ├── .gitignore
 ├── README.md
 
-markdown
-Kopyala
-Düzenle
-
-## 🚀 Kullanılan Teknolojiler
+## 🚀 Tech Stack
 
 - **React.js** (Frontend)
 - **React Router**
@@ -24,23 +20,22 @@ Düzenle
 - **CORS**
 - **dotenv**
 
-## 🔧 Kurulum ve Çalıştırma
+## 🔧 Installation and Run
 
-### 1️⃣ Repository'yi Klonla:
-```bash
-git clone https://github.com/kullaniciadi/proje-adi.git
-cd proje-adi
-2️⃣ Client Kurulumu:
-bash
-Kopyala
-Düzenle
+### 
+1️⃣ Clone Repository:
+
+git clone https://github.com/username/project-name.git
+cd project-name
+
+2️⃣ Client Installation:
+
 cd client
 npm install
-npm start
-3️⃣ Server Kurulumu:
-bash
-Kopyala
-Düzenle
+npm run dev
+
+3️⃣ Server Installation:
+
 cd server
 npm install
-npm run dev
+npm start
