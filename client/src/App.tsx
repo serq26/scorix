@@ -7,6 +7,7 @@ import MatchDetail from "./pages/MatchDetail";
 import HomeScreen from "./pages/HomeScreen";
 import Header from "./components/ui/Header";
 import UserCoupons from "./pages/UserCoupons";
+import Footer from "./components/ui/Footer";
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
                 <Route path="/match/:id" element={<MatchDetail />} />
                 <Route path="/my-coupons" element={<UserCoupons />} />
               </Routes>
+              <Footer />
             </Router>
           </NotifyProvider>
         </DialogProvider>
