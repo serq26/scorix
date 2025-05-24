@@ -10,7 +10,7 @@ const Footer: React.FC = () => {
         py: 4,
         px: 2,
         mt: "auto",
-        backgroundColor: "var(--primary-color)",
+        backgroundColor: "#262626",
         marginTop: "100px",
       }}
     >
@@ -50,9 +50,9 @@ const Footer: React.FC = () => {
           </Stack>
         </Stack>
 
-        <Divider sx={{ my: 2 }} />
+        <Divider sx={{ my: 2, background: "#aaa" }} />
 
-        <Typography variant="body2" color="text.secondary" align="center">
+        <Typography variant="body2" color="white" align="center">
           © {new Date().getFullYear()} Scorix. All rights reserved.
         </Typography>
       </Container>
