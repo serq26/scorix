@@ -4,11 +4,11 @@ This project is a full stack web application based on React.js and Node.js that 
 
 ## 📁 Project Folder
 
-/
-├── client/ # React.js frontend 
-├── server/ # Node.js (Express) backend
-├── .gitignore
-├── README.md
+/  
+├── client/ # React.js frontend  
+├── server/ # Node.js (Express) backend  
+├── .gitignore  
+├── README.md  
 
 ## 🚀 Tech Stack
 
@@ -25,17 +25,17 @@ This project is a full stack web application based on React.js and Node.js that 
 ### 
 1️⃣ Clone Repository:
 
-git clone https://github.com/username/project-name.git
-cd project-name
+- git clone https://github.com/username/project-name.git
+- cd project-name
 
 2️⃣ Client Installation:
 
-cd client
-npm install
-npm run dev
+- cd client
+- npm install
+- npm run dev
 
 3️⃣ Server Installation:
 
-cd server
-npm install
-npm start
+- cd server
+- npm install
+- npm start
