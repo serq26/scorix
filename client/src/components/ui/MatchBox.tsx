@@ -49,7 +49,7 @@ const MatchBox: React.FC<MatchBoxProps> = ({ match, expanded, handleChangeExpand
         sx={{
           backgroundColor: isIntheBetCart ? '#ffeed4' : null,
           "&.Mui-expanded": {
-            backgroundColor: "#e8ea33",
+            backgroundColor: "#e2f5fe",
           },
         }}
       >

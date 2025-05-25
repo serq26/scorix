@@ -4,7 +4,7 @@ import LeagueBox from "../components/ui/LeagueBox";
 import { Box, CircularProgress } from "@mui/material";
 import useWebsocket from "../hooks/useWebsocket";
 import { MatchType } from "../types/matchType";
-import { compareAsc, format, isToday, isTomorrow } from "date-fns";
+import { compareAsc, format, isToday, isTomorrow, parse } from "date-fns";
 import { tr } from "date-fns/locale";
 import BetsCart from "../components/ui/BetsCart";
 import { useBetsCart } from "../hooks/useBetsCart";
@@ -91,9 +91,21 @@ function HomeScreen() {
       }}
     >
       <Category />
-      {Object.entries(dateGroupedMatches).map(([key, value]) => (
-        <LeagueBox key={key} title={key === "today" ? "Bugün" : key === "tomorrow" ? "Yarın" : key} matches={value} />
-      ))}
+      {Object.entries(dateGroupedMatches).map(([key, value]) =>
+        value
+          .sort(
+            (a, b) =>
+              parse(a.matchDate.toString(), "yyyy-MM-dd HH:mm", new Date()).getTime() -
+              parse(b.matchDate.toString(), "yyyy-MM-dd HH:mm", new Date()).getTime()
+          )
+          ?.map((x, i) => (
+            <LeagueBox
+              key={i}
+              title={`${{ today: "Bugün", tomorrow: "Yarın" }[key] || key} ${format(x?.matchDate, "HH:mm")}`}
+              matches={[x]}
+            />
+          ))
+      )}
       <BetsCart />
     </Box>
   );
