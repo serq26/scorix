@@ -10,14 +10,15 @@ const Footer: React.FC = () => {
         py: 4,
         px: 2,
         mt: "auto",
-        backgroundColor: "#262626",
+        backgroundColor: "#edf3fa",
         marginTop: "100px",
+        boxShadow: "2px -8px 16px 7px #ddd"
       }}
     >
       <Container maxWidth="lg">
         <Stack direction={{ xs: "column", sm: "row" }} spacing={2} justifyContent="space-between" alignItems="center">
           <Box display={"flex"} alignItems={"center"}>
-            <ScoreboardIcon sx={{ display: { xs: "none", md: "flex" }, mr: 1 }} />
+            <ScoreboardIcon color="action" sx={{ display: { xs: "none", md: "flex" }, mr: 1 }} />
             <Typography
               variant="h6"
               noWrap
@@ -29,7 +30,7 @@ const Footer: React.FC = () => {
                 fontFamily: "monospace",
                 fontWeight: 700,
                 letterSpacing: ".3rem",
-                color: "inherit",
+                color: "#6d6f73",
                 textDecoration: "none",
               }}
             >
@@ -37,14 +38,14 @@ const Footer: React.FC = () => {
             </Typography>
           </Box>
 
-          <Stack direction="row" spacing={2}>
-            <Link href="/privacy" color="inherit" underline="hover">
+          <Stack direction="row" spacing={2} color={"#6d6f73"}>
+            <Link href="/#" color="inherit" underline="hover">
               Gizlilik
             </Link>
-            <Link href="/terms" color="inherit" underline="hover">
+            <Link href="/#" color="inherit" underline="hover">
               Şartlar
             </Link>
-            <Link href="/about" color="inherit" underline="hover">
+            <Link href="/#" color="inherit" underline="hover">
               Hakkında
             </Link>
           </Stack>
@@ -52,7 +53,7 @@ const Footer: React.FC = () => {
 
         <Divider sx={{ my: 2, background: "#aaa" }} />
 
-        <Typography variant="body2" color="white" align="center">
+        <Typography variant="body2" color="#6d6f73" align="center">
           © {new Date().getFullYear()} Scorix. All rights reserved.
         </Typography>
       </Container>
